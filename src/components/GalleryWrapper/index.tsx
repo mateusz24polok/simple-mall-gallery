@@ -1,7 +1,7 @@
 import React from "react";
 
 interface GalleryWrapperProps {
-  children: Array<React.ReactElement>;
+  children: React.ReactElement | Array<React.ReactElement>;
 }
 
 const GalleryWrapper: React.FC<GalleryWrapperProps> = ({ children }) => {
