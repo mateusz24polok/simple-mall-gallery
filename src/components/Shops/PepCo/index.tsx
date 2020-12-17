@@ -1,49 +1,25 @@
-import React, { useContext, useState } from "react";
-import { AppContext } from "../../../AppContext";
-import styles from "../styles.module.scss";
+import React from "react";
+import Shop from "../../Shop";
+import { useDispatch } from "react-redux";
+import { changeActiveShop } from "../../../slices/ShopSlice";
 
 const PepCo: React.FC = () => {
-  const { handleShopClick: takeShopID, activeShop } = useContext(AppContext);
-
-  const [isActive, setIsActive] = useState(false);
-
-  const handleShopClick = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
-    takeShopID(event);
-    if (activeShop === "PepCo") {
-      setIsActive((previousIsActiveValue) => !previousIsActiveValue);
-    } else {
-      setIsActive(true);
-    }
-  };
-
+  const dispatch = useDispatch();
   const closeShopInfo = () => {
-    setIsActive(false);
+    dispatch(changeActiveShop(""));
   };
 
   return (
-    <>
-      <g
-        id="PepCo"
-        onClick={handleShopClick}
-        className={isActive && activeShop === "PepCo" ? styles.active : ""}
-        style={{ fill: "#fff", stroke: `${isActive && activeShop === "PepCo" ? "gold" : "black"}`, strokeWidth: "0.5px" }}
-      >
-        <path
-          id="PepCoUp"
-          d="M474,272l-73,0l20,40l73,0l-20,-40Z"
-        />
-        <rect
-          x="421"
-          y="312"
-          width="73"
-          height="10"
-        />
-        <path
-          id="PepCoSide"
-          d="M401,272l0,10l20,40l0,-10l-20,-40Z"
-        />
-      </g>
-      {isActive && activeShop === "PepCo" && (
+    <Shop
+      name="PepCo"
+      SVGShopElement={
+        <g>
+          <path id="PepCoUp" d="M474,272l-73,0l20,40l73,0l-20,-40Z" />
+          <rect x="421" y="312" width="73" height="10" />
+          <path id="PepCoSide" d="M401,272l0,10l20,40l0,-10l-20,-40Z" />
+        </g>
+      }
+      SVGShopInfo={
         <g id="PepCoInfo">
           <path
             id="PepCoBorder"
@@ -116,8 +92,8 @@ const PepCo: React.FC = () => {
             X
           </text>
         </g>
-      )}
-    </>
+      }
+    />
   );
 };
 

@@ -1,44 +1,25 @@
-import React, { useContext, useState } from "react";
-import { AppContext } from "../../../AppContext";
-import styles from "../styles.module.scss";
+import React from "react";
+import Shop from "../../Shop";
+import { useDispatch } from "react-redux";
+import { changeActiveShop } from "../../../slices/ShopSlice";
 
 const CCC: React.FC = () => {
-  const { handleShopClick: takeShopID, activeShop } = useContext(AppContext);
-
-  const [isActive, setIsActive] = useState(false);
-
-  const handleShopClick = (
-    event: React.MouseEvent<SVGSVGElement, MouseEvent>
-  ) => {
-    takeShopID(event);
-    if (activeShop === "CCC") {
-      setIsActive((previousIsActiveValue) => !previousIsActiveValue);
-    } else {
-      setIsActive(true);
-    }
-  };
-
+  const dispatch = useDispatch();
   const closeShopInfo = () => {
-    setIsActive(false);
+    dispatch(changeActiveShop(""));
   };
 
   return (
-    <>
-      <g
-        id="CCC"
-        onClick={handleShopClick}
-        className={isActive && activeShop === "CCC" ? styles.active : ""}
-        style={{
-          fill: "#fff",
-          stroke: `${isActive && activeShop === "CCC" ? "gold" : "black"}`,
-          strokeWidth: "0.5px",
-        }}
-      >
-        <path id="CCCUp" d="M547,272l-73,0l20,40l73,0l-20,-40Z" />
-        <rect x="494" y="312" width="73" height="10" />
-        <path id="CCCSide" d="M474,272l0,10l20,40l0,-10l-20,-40Z" />
-      </g>
-      {isActive && activeShop === "CCC" && (
+    <Shop
+      name="CCC"
+      SVGShopElement={
+        <g>
+          <path id="CCCUp" d="M547,272l-73,0l20,40l73,0l-20,-40Z" />
+          <rect x="494" y="312" width="73" height="10" />
+          <path id="CCCSide" d="M474,272l0,10l20,40l0,-10l-20,-40Z" />
+        </g>
+      }
+      SVGShopInfo={
         <g id="CCCInfo">
           <path
             id="CCCBorder"
@@ -111,8 +92,8 @@ const CCC: React.FC = () => {
             X
           </text>
         </g>
-      )}
-    </>
+      }
+    />
   );
 };
 
