@@ -12,6 +12,8 @@ Project of an interactive mock-up of a shopping mall prepared as a task for post
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+There is also Vanilla JS version of this project: https://codepen.io/matusz7794/pen/dypREWG
+
 <br>
 
 # Live Demo
