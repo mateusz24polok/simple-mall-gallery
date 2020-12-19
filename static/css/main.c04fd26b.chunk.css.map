@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/Shop/styles.module.scss"],"names":[],"mappings":"AAAA,wBACE,2BAA4B,CAC5B,0BAA4B","file":"main.c04fd26b.chunk.css","sourcesContent":[".active g{\r\n  transform: translateY(-15px);\r\n  transition: all 0.35s linear;\r\n}\r\n"]}
